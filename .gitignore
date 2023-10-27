@@ -1,0 +1,17 @@
+../.terraform/*
+
+*.tfstate
+*.tfstate.*
+
+.terraform.lock.hcl
+
+.terraform
+
+.terraform/providers/registry.terraform.io/hashicorp/aws/5.22.0/windows_amd64/terraform-provider-aws_v5.22.0_x5.exe
+
+environments/dev/vpc/.terraform/providers/registry.terraform.io/hashicorp/aws/5.21.0/windows_amd64/terraform-provider-aws_v5.21.0_x5.exe
+
+environments/dev/alb-asg/.terraform/providers/registry.terraform.io/hashicorp/aws/5.22.0/windows_amd64/terraform-provider-aws_v5.22.0_x5.exe
+
+environments/dev/rds/.terraform/providers/registry.terraform.io/hashicorp/aws/5.22.0/windows_amd64/terraform-provider-aws_v5.22.0_x5.exe
+
