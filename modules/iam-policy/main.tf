@@ -17,8 +17,7 @@ resource "aws_iam_role" "iam_role" {
     {
       Name        = "${var.environment}-${var.application}-iam-role",
       Environment = var.environment,
-      Owner       = var.owner,
-      CostCenter  = var.cost_center,
+      createdBy   = var.createdBy
       Application = var.application
     },
     var.tags

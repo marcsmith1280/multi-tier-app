@@ -5,9 +5,8 @@ provider "aws" {
 
 module "iam-policy" {
   source      = "../../../modules/iam-policy"
-  owner       = var.owner
+  createdBy   = var.createdBy
   environment = var.environment
-  cost_center = var.cost_center
   application = var.application
 }
 
@@ -17,8 +16,7 @@ module "alb-sg" {
   tags        = var.tags
   name        = "${var.environment}-${var.application}"
   environment = var.environment
-  owner       = var.owner
-  cost_center = var.cost_center
+  createdBy   = var.createdBy
   application = "${var.application}-alb"
   vpc_id      = var.vpc_id
 
@@ -68,9 +66,8 @@ module "alb" {
   listener_port                    = var.listener_port
   listener_protocol                = var.listener_protocol
   listener_type                    = var.listener_type
-  owner                            = var.owner
   environment                      = var.environment
-  cost_center                      = var.cost_center
+  createdBy                        = var.createdBy
   application                      = var.application
   security_group_ids               = module.alb-sg.security_group_ids
 }
@@ -79,10 +76,9 @@ module "instance-sg" {
   source      = "../../../modules/security-group"
   region      = var.region
   tags        = var.tags
-  name        = "${var.environment}-${var.application}"
+  name        = "${var.environment}-${var.application}-instance"
   environment = var.environment
-  owner       = var.owner
-  cost_center = var.cost_center
+  createdBy   = var.createdBy
   application = var.application
   vpc_id      = var.vpc_id
 
@@ -125,9 +121,8 @@ module "asg" {
   min_size             = var.min_size
   desired_capacity     = var.desired_capacity
   propagate_at_launch  = var.propagate_at_launch
-  owner                = var.owner
   environment          = var.environment
-  cost_center          = var.cost_center
+  createdBy            = var.createdBy
   application          = var.application
   instance_warmup_time = var.instance_warmup_time
   target_value         = var.target_value
@@ -135,9 +130,8 @@ module "asg" {
   iam_role             = module.iam-policy.iam_role
   security_group_ids   = module.instance-sg.security_group_ids
   tags = {
-    Owner       = "${var.owner}"
     Environment = "${var.environment}"
-    Cost_center = "${var.cost_center}"
+    createdBy   = "${var.createdBy}"
     Application = "${var.application}"
   }
 }

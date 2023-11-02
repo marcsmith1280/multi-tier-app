@@ -104,19 +104,14 @@ variable "listener_type" {
   type        = string
 }
 
-variable "owner" {
-  type        = string
-  description = "Name of owner"
-}
-
 variable "environment" {
   type        = string
   description = "The environment name for the resources."
 }
 
-variable "cost_center" {
+variable "createdBy" {
   type        = string
-  description = "Name of cost-center for this alb-asg"
+  description = "Who created this resource"
 }
 
 variable "application" {

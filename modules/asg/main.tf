@@ -1,7 +1,7 @@
 locals {
   asg_tags = merge(
     var.tags,
-    { "Name" = "${var.environment}-${var.application}-asg"  }
+    { "Name" = "${var.environment}-${var.application}-instance"  }
   )
 }
 

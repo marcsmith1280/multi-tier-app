@@ -24,14 +24,9 @@ variable "environment" {
   description = "The environment name for the resources."
 }
 
-variable "owner" {
+variable "createdBy" {
   type        = string
-  description = "Owner's name for the resource."
-}
-
-variable "cost_center" {
-  type        = string
-  description = "Cost center identifier for the resource."
+  description = "Who created this resource."
 }
 
 variable "application" {

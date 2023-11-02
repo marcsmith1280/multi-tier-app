@@ -1,7 +1,7 @@
 # Network Variable definitions. Change specifics like vpc, subnets, region and RDS details to run this script
 region                      = "us-east-1"
-vpc_id                      = "vpc-09e08e492a92d41a2"
-subnet_ids                  = ["subnet-0b646c239e303fe88", "subnet-01001805a0b96516a","subnet-035b83e396822d301"]
+vpc_id                      = "vpc-04847e6a50e4db5b5"
+subnet_ids                  = ["subnet-0da5725a2050f0ebb", "subnet-0b131ec4133e7c1cb","subnet-0e1341eb7ac4ea0c6"]
 multi_az                    = true
 publicly_accessible         = false
 
@@ -20,7 +20,7 @@ from_port                   = 3306
 to_port                     = 3306
 protocol                    = "tcp"
 cidr_block                  = ["0.0.0.0/0"]
-security_group_ids          = ["sg-0c22a0b8d4fc18eba"]
+security_group_ids          = ["sg-06f73e4b94ad18803"]
 
 # Backup vars
 backup_retention_period     = 7

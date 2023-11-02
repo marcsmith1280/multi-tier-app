@@ -6,9 +6,9 @@ terraform {
     }
   }
   backend "s3" {
-    bucket = "backend-archive-dev"
-    key    = "dev/2-tier-app.tfstate"
-    encrypt = true
+    bucket         = "backend-archive-dev"
+    key            = "dev/2-tier-app.tfstate"
+    encrypt        = true
     region         = "us-east-1"
     dynamodb_table = "tf-backend-archive"
   }

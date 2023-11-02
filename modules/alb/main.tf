@@ -11,8 +11,7 @@ resource "aws_alb" "application_load_balancer" {
     {
       Name        = "${var.environment}-${var.application}-alb",
       Environment = var.environment,
-      Owner       = var.owner,
-      CostCenter  = var.cost_center,
+      createdBy   = var.createdBy,
       Application = var.application
     },
     var.tags
@@ -43,8 +42,7 @@ resource "aws_alb_target_group" "alb_tg" {
     {
       Name        = "${var.environment}-${var.application}-alb-target-group"
       Environment = var.environment,
-      Owner       = var.owner,
-      CostCenter  = var.cost_center,
+      createdBy   = var.createdBy,
       Application = var.application
     },
     var.tags
