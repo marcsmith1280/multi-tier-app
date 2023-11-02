@@ -2,6 +2,8 @@ Multi-tier Web Application
 
 In this design, I used Terraform to build a multi-tier web hosting environment. 
 
+![Archiectural Diagram](image-1.png)
+
 The Presentation Tier was built using a internet facing Application Load Balancer backed by an Auto-scaling group configured to host using Apache. 
 
 The Application Tier was built using a internal Application Load Balancer backed by another Auto-scaling group. These resources are reside in private subnets and are only assessible from the ALB in the Presentation Tier. Software running you app for Business Logic can be used here. 
@@ -54,4 +56,3 @@ After modification cd into
 - use the following command to run script
 - terraform apply -var-file="../../../vars/dev/backend.tfvars" --auto-approve
 
-![Architectual Diagram](image.png)
