@@ -1,6 +1,12 @@
-Classic 2-Tier Web Application using Terraform and AWS.
+Multi-tier Web Application
 
-In this lab I created a classic 2-tier Web Application running Apache with a AWS Load Balancer & EC2 instance & RDS Database.
+In this design, I used Terraform to build a multi-tier web hosting environment. 
+
+The Presentation Tier was built using a internet facing Application Load Balancer backed by an Auto-scaling group configured to host using Apache. 
+
+The Application Tier was built using a internal Application Load Balancer backed by another Auto-scaling group. These resources are reside in private subnets and are only assessible from the ALB in the Presentation Tier. Software running you app for Business Logic can be used here. 
+
+Finally the Datebase Tier was built using Amazon RDS and is setup to by Multi-AZ in the case of any failures or outages the replication database will be promoted to keep your application working as expected. 
 
 AWS Resources used:
 -VPC
@@ -21,14 +27,23 @@ After modification cd into
  
 You will need to grab outputs of VPC module to create Application Load Balancer and Auto Scaling Group
 
-Modify the following variables file to create ALB & ASG
-- vars\dev\alb-asg.tfvars
+Modify the following variables file to create internet facing ALB & ASG
+- vars\dev\alb-asg-web.tfvars
 - use VPC Modules output to complete configuration by updating subnets and VPC ID
 
 After modification cd into
-- environments\dev\alb-asg
+- environments\dev\alb-asg-web
 - use the following command to run script
-- terraform apply -var-file="../../../vars/dev/alb-asg.tfvars" --auto-approve
+- terraform apply -var-file="../../../vars/dev/alb-asg-web.tfvars" --auto-approve
+
+Modify the following variables file to create internal/private ALB & ASG
+- vars\dev\alb-asg-web-app.tfvars
+- use VPC Modules output to complete configuration by updating subnets and VPC ID
+
+After modification cd into
+- environments\dev\alb-asg-app
+- use the following command to run script
+- terraform apply -var-file="../../../vars/dev/alb-asg-app.tfvars" --auto-approve
 
 Modify the following variables to launch RDS database 
 - vars\dev\rds.tfvars
@@ -39,6 +54,4 @@ After modification cd into
 - use the following command to run script
 - terraform apply -var-file="../../../vars/dev/backend.tfvars" --auto-approve
 
-The Application Load Balancer is public available by access of port 80. All other resources are in private subnets. The EC2 instances hosting the apache site is in private subnets only available from the Application Load Balancer. The RDS databases are in seperate private subnets only available from access of the private EC2 instances. The site will be accessible from the load balancer DNS name and can be configured in Route53 as a A record to point to specific domain name. 
-
-NAT Gateways are used to allow those instances in the private subnets outbound access to the internet. This way the nodes can be managed and patched routinely to keep up-to-date OS and security features. 
+![Architectual Diagram](image.png)
