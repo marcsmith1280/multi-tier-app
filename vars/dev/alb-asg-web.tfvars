@@ -33,7 +33,7 @@ alb_create_egress_sg    = false
 ingress_cidr_from_port = [22]
 ingress_cidr_to_port   = [22]
 ingress_cidr_protocol  = ["tcp", "tcp"]
-ingress_cidr_block     = ["10.0.0.23/32"]
+ingress_cidr_block     = ["0.0.0.0/0"]
 create_ingress_cidr    = true
 
 ingress_sg_from_port = [80]
